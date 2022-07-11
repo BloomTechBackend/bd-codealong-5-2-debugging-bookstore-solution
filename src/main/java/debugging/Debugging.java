@@ -4,7 +4,6 @@ public class Debugging {
 
     static boolean flag = true;
 
-
     public static void main(String[] args) {
         System.out.println("Here we are in the main method.");
         for (int i=0; i<3; i++) {
@@ -12,7 +11,6 @@ public class Debugging {
         }
         System.out.println("finished");
     }
-
 
     public static int method1() {
         System.out.println("Here we are in method1");
