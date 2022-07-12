@@ -3,7 +3,7 @@ package bookstore;
 public class Bookstore {
     public static void main(String[] args) {
 
-        checkInventory(); // Case 2
+//        checkInventory(); // Case 2
         processOrder(); // Case 3
 
     }
@@ -11,8 +11,8 @@ public class Bookstore {
     static void checkInventory() {
         // GIVEN
         StoreInventory storeInventory = new StoreInventory();
-        String title = "Harry Potter";
-        int quantity = 5;
+        String title = "Harry Potter ";
+        int quantity = 1;
         storeInventory.addInventory(title, quantity);
         InventoryChecker inventoryChecker = new InventoryChecker(storeInventory);
 
@@ -35,10 +35,11 @@ public class Bookstore {
         storeInventory.addInventory(title1, quantity);
         String title2 = "Don Quixote";
         storeInventory.addInventory(title2, quantity);
+        storeInventory.removeInventory(title2, 2);
         String title3 = "1984";
-        storeInventory.addInventory(title2, 1);
+        storeInventory.addInventory(title3, 2);
         OrderProcessor orderProcessor = new OrderProcessor(storeInventory);
-        String orderList = "Harry Potter::3\nDon Quixote::5\n1984::2";
+        String orderList = "Harry Potter::3\nDon Quixote::2\n1984::2";
 
         // WHEN
         boolean result = orderProcessor.processOrder(orderList);

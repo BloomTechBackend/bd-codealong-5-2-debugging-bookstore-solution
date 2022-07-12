@@ -46,9 +46,15 @@ public class StoreInventory {
      * @return the current total quantity in stock for the specified title
      */
     public int addInventory(String title, int additionalQuantity) {
-        InventoryEntry entry = this.getEntryByTitle(title);
-        if (entry == null || additionalQuantity < 0) {
+        if (title == null || additionalQuantity < 0) {
             throw new IllegalArgumentException();
+        }
+        InventoryEntry entry = this.getEntryByTitle(title);
+        if (entry == null) {
+            entry = new InventoryEntry(title);
+            entry.setQuantity(additionalQuantity);
+            this.inventory.add(entry);
+            return additionalQuantity;
         } else {
             int newQuantity = entry.getQuantity() + additionalQuantity;
             entry.setQuantity(newQuantity);
@@ -70,7 +76,7 @@ public class StoreInventory {
      */
     public void removeInventory(String title, int reducedQuantity) {
         InventoryEntry entry = this.getEntryByTitle(title);
-        if (entry == null || reducedQuantity < 0 || entry.getQuantity() < reducedQuantity) {
+        if (entry == null || reducedQuantity < 0) {
             throw new IllegalArgumentException();
         } else {
             int newQuantity = entry.getQuantity() - reducedQuantity;
