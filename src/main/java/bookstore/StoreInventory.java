@@ -47,7 +47,15 @@ public class StoreInventory {
      */
     public int addInventory(String title, int additionalQuantity) {
         InventoryEntry entry = this.getEntryByTitle(title);
-        if (entry == null || additionalQuantity < 0) {
+
+        // Sample fix: If the entry comes back as null, then this is the first time this book
+        // is being added. Create an InventoryEntry title and add it to the inventory.
+        if (entry == null) {
+            entry = new InventoryEntry(title);
+            this.inventory.add(entry);
+        }
+
+        if (additionalQuantity < 0) {
             throw new IllegalArgumentException();
         } else {
             int newQuantity = entry.getQuantity() + additionalQuantity;

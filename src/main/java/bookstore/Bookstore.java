@@ -36,7 +36,9 @@ public class Bookstore {
         String title2 = "Don Quixote";
         storeInventory.addInventory(title2, quantity);
         String title3 = "1984";
-        storeInventory.addInventory(title2, 1);
+
+        // Sample fix: Incorrect title added and not enough quantity to cover the request
+        storeInventory.addInventory(title3, 2);
         OrderProcessor orderProcessor = new OrderProcessor(storeInventory);
         String orderList = "Harry Potter::3\nDon Quixote::5\n1984::2";
 
